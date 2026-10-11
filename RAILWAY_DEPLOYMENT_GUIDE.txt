@@ -1,0 +1,43 @@
+ASHASetu Railway deployment checklist
+=======================================
+
+This archive is set up for the existing GitHub Pages frontend plus a Railway-hosted Node API and persistent SQLite database. It does not deploy itself; follow these steps.
+
+IMPORTANT COST NOTE
+Railway currently offers trial credits, then charges according to its plan/usage. Check the live pricing before continuing. A persistent volume is required so registrations and help requests survive restarts.
+
+A. Update the EXISTING GitHub repository
+1. Extract this ZIP on your computer.
+2. In https://github.com/darkm0/sakshi-chotadon-10, choose Add file > Upload files.
+3. Upload/merge the folders `backend/` and `frontend/`, plus this package's `README.md`, `API.md`, and `.gitignore`. Keep the root `index.html`, `robots.txt`, and `sitemap.xml`. When replacing root index.html, use the version included here (it preserves the Search Console HTML verification tag).
+4. Commit directly to main. Do not upload `.env` or any `.db` file.
+
+B. Deploy backend on Railway
+1. Create a Railway account, start a new project and choose Deploy from GitHub repo. Connect `darkm0/sakshi-chotadon-10`.
+2. In the backend service's Settings, set Root Directory to `backend`.
+3. Build command: `npm install`
+4. Start command: `npm run seed && npm start`
+5. Create/attach a volume with mount path `/data`.
+6. Add these Variables to the backend service (Values are private; don't put them into GitHub):
+   NODE_ENV = production
+   DB_FILE = /data/learnbridge.db
+   ADMIN_ID = choose your administrator ID (for example, sakshi)
+   ADMIN_PASSWORD = a unique password of at least 12 characters
+   JWT_SECRET = a long random secret generated on your computer
+7. Generate a public domain for the service (Settings > Networking > Generate Domain). Wait for deployment to succeed.
+8. Test: open `https://YOUR-RAILWAY-DOMAIN/api/health`. It should show JSON with `"ok":true`.
+
+C. Point the GitHub Pages frontend to Railway
+1. Copy the Railway public domain, for example `https://your-service.up.railway.app`. Do not include a trailing slash.
+2. In the root `index.html`, find `REPLACE-WITH-RAILWAY-DOMAIN.up.railway.app` and replace that hostname with your actual Railway host. Example if domain is `https://ashasetu-api.up.railway.app`, the API line should end in `https://ashasetu-api.up.railway.app/api`.
+3. Make the same change in `frontend/index.html` so the optional frontend served from the API also points correctly. Commit changes to main.
+4. Open `https://darkm0.github.io/sakshi-chotadon-10/` in a private/incognito tab. Test student registration, student login, admin login, help request, and contribution/volunteer forms.
+
+D. Production safety
+- Admin ID/password and JWT_SECRET must exist only in Railway Variables, never in HTML/JavaScript or GitHub.
+- Use a unique admin password of at least 12 characters; do not reuse the old development password.
+- The volume must stay mounted at `/data`, and DB_FILE must equal `/data/learnbridge.db`.
+- Keep the Google verification meta tag in root index.html.
+- Keep screenshots/logs you share free of passwords, tokens, and private student data.
+
+If deployment fails, open Railway > service > Deployments/Logs and share a screenshot with secrets hidden.

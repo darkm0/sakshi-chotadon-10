@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="dgXTpkTRn3aob3o4th-5kIgGlC4g2e9ytjqPa9t119M" />
+
 <title>Sakshi Nitin Bhoir | AshaSetu — Learning Management System of NGO</title>
 <meta name="description" content="AshaSetu — Learning Management System of NGO created by Sakshi Nitin Bhoir, Roll No. 10. Free educational resources and community support for Class 1 to 9 students.">
 <meta name="author" content="Sakshi Nitin Bhoir">
@@ -66,14 +67,14 @@ section{max-width:1200px;margin:auto;padding:70px 20px}.section-head{text-align:
 
 <div class="modal" id="registerModal"><div class="modal-box"><button class="close" onclick="closeModal('registerModal')">×</button><h2>🎓 Create Student Account</h2><p>Register your own account to access the learning materials for your class.</p><form id="registerForm"><div class="form-grid"><div class="field full"><label>Full name</label><input id="rName" required></div><div class="field"><label>Email (optional)</label><input id="rEmail" type="email"></div><div class="field"><label>Class</label><select id="rClass" required></select></div><div class="field full"><label>Password</label><input id="rPass" type="password" minlength="6" required></div></div><button class="btn primary">Create Account</button><p id="registerMsg"></p></form></div></div>
 
-<div class="modal" id="adminModal"><div class="modal-box"><button class="close" onclick="closeModal('adminModal')">×</button><h2>🛡️ Administrator Login</h2><p>Authorized owner access only.</p><form id="adminForm"><div class="field"><label>Admin ID</label><input id="aId" placeholder="sakshi" required></div><div class="field"><label>Password</label><input id="aPass" type="password" placeholder="sakshi123" required></div><button class="btn admin">Open Admin Control Center</button><p id="adminMsg"></p></form></div></div>
+<div class="modal" id="adminModal"><div class="modal-box"><button class="close" onclick="closeModal('adminModal')">×</button><h2>🛡️ Administrator Login</h2><p>Authorized owner access only.</p><form id="adminForm"><div class="field"><label>Admin ID</label><input id="aId" placeholder="Enter admin ID" required></div><div class="field"><label>Password</label><input id="aPass" type="password" placeholder="Enter admin password" required></div><button class="btn admin">Open Admin Control Center</button><p id="adminMsg"></p></form></div></div>
 
 <div class="course-screen" id="courseScreen"><div class="course-wrap"><div class="dash-top"><button class="btn soft" onclick="closeCourse()">← Back to Main Website</button><h2 id="courseTitle"></h2><button class="btn admin" onclick="logoutStudent()">Logout</button></div><div class="card"><p id="courseIntro"></p><div class="progressbar"><span id="courseProgress"></span></div><p id="progressText"></p></div><div id="resourceArea"></div></div></div>
 
 <div class="dashboard" id="dashboard"><div class="dash-wrap"><div class="dash-top"><h2>🛡️ AshaSetu Admin Control Center</h2><button class="btn soft" onclick="closeDashboard()">← Website</button><button class="btn admin" onclick="adminLogout()">Logout</button></div><div class="cards" id="adminStats"></div><div class="tabs"><button class="tab active" onclick="showAdminTab('users',this)">Students & Users</button><button class="tab" onclick="showAdminTab('progress',this)">Progress</button><button class="tab" onclick="showAdminTab('help',this)">Help Requests</button><button class="tab" onclick="showAdminTab('resources',this)">Learning Resources</button><button class="tab" onclick="showAdminTab('community',this)">Community</button></div><div class="table-wrap"><div id="adminTable"></div></div></div></div>
 
 <script>
-const API=(location.hostname==='localhost' && location.port==='3010') ? '/api' : 'http://localhost:3010/api';
+const API=(location.hostname==='localhost' && location.port==='3010') ? '/api' : 'https://REPLACE-WITH-RAILWAY-DOMAIN.up.railway.app/api';
 const SAKSHI_PHONE='917738666325';
 let currentStudent=null,adminData=null;
 const classes=Array.from({length:9},(_,i)=>i+1);
