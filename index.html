@@ -74,7 +74,7 @@ section{max-width:1200px;margin:auto;padding:70px 20px}.section-head{text-align:
 <div class="dashboard" id="dashboard"><div class="dash-wrap"><div class="dash-top"><h2>🛡️ AshaSetu Admin Control Center</h2><button class="btn soft" onclick="closeDashboard()">← Website</button><button class="btn admin" onclick="adminLogout()">Logout</button></div><div class="cards" id="adminStats"></div><div class="tabs"><button class="tab active" onclick="showAdminTab('users',this)">Students & Users</button><button class="tab" onclick="showAdminTab('progress',this)">Progress</button><button class="tab" onclick="showAdminTab('help',this)">Help Requests</button><button class="tab" onclick="showAdminTab('resources',this)">Learning Resources</button><button class="tab" onclick="showAdminTab('community',this)">Community</button></div><div class="table-wrap"><div id="adminTable"></div></div></div></div>
 
 <script>
-const API=(location.hostname==='localhost' && location.port==='3010') ? '/api' : 'https://REPLACE-WITH-RAILWAY-DOMAIN.up.railway.app/api';
+const API = (location.hostname === 'localhost' && location.port === '3010') ? '/api' : 'https://sakshi-chotadon-10-production.up.railway.app/api';
 const SAKSHI_PHONE='917738666325';
 let currentStudent=null,adminData=null;
 const classes=Array.from({length:9},(_,i)=>i+1);
